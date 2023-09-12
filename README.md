@@ -18,3 +18,8 @@ But! You can also pass in a msg property of `sp_timeout` and the nodes will igno
 Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **Semaphore Release** will be the only node that can release the lock
 
 If nothing has already taken the lock, the message will of course pass through, and subequntly start  quueing other messages, where each one is allowd to pass on the signal or fail-safe trigger 
+
+
+### Why
+
+Having tried other nodes to accompliush this, I was iether creating messy flows/nodes to try and emulate this approch, or using no longer maintained or buggy nodes.
