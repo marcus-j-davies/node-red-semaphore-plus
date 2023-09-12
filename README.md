@@ -12,9 +12,9 @@ But at the same time, allowing an optional fail-safe, that can be controlled dyn
 |Semaphore Release | Raises the signal to allow a message to pass   |
 |Semaphore FS Reset | Alters the current fail-safe time |
 
-The fail-safe time is set at Node level (**semaphore-plus-take**, **semaphore-plus-fs-reset**),  
+The fail-safe time is set at Node level (**Semaphore Take**, **Semaphore FS Reset**),  
 But! You can also pass in a msg property of `sp_timeout` and the nodes will ignore what is set at Node level, and sue this value instead
 
-Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **semaphore-plus-release** will be the only node that can release the lock
+Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **Semaphore Release** will be the only node that can release the lock
 
 If nothing has already taken the lock, the message will of course pass through  
