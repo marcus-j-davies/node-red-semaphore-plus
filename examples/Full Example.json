@@ -1,0 +1,298 @@
+[
+    {
+        "id": "32b1a4a42d2c2508",
+        "type": "tab",
+        "label": "Semaphore Plus Example",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "91e8842205e34db4",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "With Fail-safe set as 0, it is disabled",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "213930f3e6798d8e",
+        "type": "semaphore-plus-take",
+        "z": "32b1a4a42d2c2508",
+        "name": "Semaphore Take",
+        "timeout": 0,
+        "config": "403eb36e86403742",
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "65c5995e73229d7d"
+            ]
+        ]
+    },
+    {
+        "id": "fba55b552c6efe86",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 160,
+        "wires": [
+            [
+                "213930f3e6798d8e"
+            ]
+        ]
+    },
+    {
+        "id": "65c5995e73229d7d",
+        "type": "debug",
+        "z": "32b1a4a42d2c2508",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0db46a394b3fe0e5",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "It means you must Release the lock your self",
+        "info": "",
+        "x": 250,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2cb7779d3c75e8f1",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 300,
+        "wires": [
+            [
+                "10df19d5ad982934"
+            ]
+        ]
+    },
+    {
+        "id": "10df19d5ad982934",
+        "type": "semaphore-plus-release",
+        "z": "32b1a4a42d2c2508",
+        "name": "Semaphore Release",
+        "config": "403eb36e86403742",
+        "x": 360,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "03096b13205b3c9c",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "inject > 1 message (the 2nd is queued)",
+        "info": "",
+        "x": 210,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5b3c96d8e3649b8e",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "With Fail-safe set as > 0, the fail safe will trigger a release after this time",
+        "info": "",
+        "x": 330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "4b50e67e17453ad4",
+        "type": "semaphore-plus-take",
+        "z": "32b1a4a42d2c2508",
+        "name": "Semaphore Take",
+        "timeout": "2000",
+        "config": "403eb36e86403742",
+        "x": 350,
+        "y": 480,
+        "wires": [
+            [
+                "50a606cc80258e20"
+            ]
+        ]
+    },
+    {
+        "id": "924a03929cb75ed2",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "4b50e67e17453ad4"
+            ]
+        ]
+    },
+    {
+        "id": "50a606cc80258e20",
+        "type": "debug",
+        "z": "32b1a4a42d2c2508",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "94a9d74a3414e53d",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "inject > 1 message (the 2nd is queued untill the fail safe triggers)",
+        "info": "",
+        "x": 310,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "32fe55da75c45d57",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 660,
+        "wires": [
+            [
+                "10c47bf837a42d81"
+            ]
+        ]
+    },
+    {
+        "id": "72c3469b67712a22",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "Whilst the lock is in use, you can reset its fail safe to a new time at any point",
+        "info": "",
+        "x": 350,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "10c47bf837a42d81",
+        "type": "semaphore-plus-fs-reset",
+        "z": "32b1a4a42d2c2508",
+        "name": "Semaphore FS Reset",
+        "timeout": "1000",
+        "config": "403eb36e86403742",
+        "x": 360,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7630cef1c2aa1348",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "This allows dynamic timing on the fail safe",
+        "info": "",
+        "x": 240,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "87e1adda7b33c385",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "Don't forget you can use msg.sp_timeout",
+        "info": "",
+        "x": 900,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "403eb36e86403742",
+        "type": "semaphore-plus-config",
+        "name": "Semaphore Plus Config"
+    }
+]
