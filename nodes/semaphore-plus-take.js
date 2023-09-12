@@ -30,9 +30,10 @@ module.exports = function (RED) {
 		self.on('input', (msg, send, done) => {
 			_Queue++;
 			const _Timeout = msg.sp_timeout || config.timeout;
-			self._Controller.take(parseInt(_Timeout)).then(() => {
+			self._Controller.take(parseInt(_Timeout)).then((isFailsafe) => {
 				_Queue--;
 				delete msg.sp_timeout;
+				msg.sp_isFailsafe = isFailsafe;
 				send(msg);
 				done();
 			});

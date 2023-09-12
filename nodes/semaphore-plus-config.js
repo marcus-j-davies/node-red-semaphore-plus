@@ -11,6 +11,7 @@ module.exports = function (RED) {
 		let _callbacks = [];
 		let _fsTime = 0;
 		let _queue = 0;
+		let isFailsafe = false;
 
 		function UpdateNodes() {
 			for (let i = 0; i < _callbacks.length; i++) {
@@ -33,9 +34,11 @@ module.exports = function (RED) {
 			}
 			_fsTime = Time;
 			if (Time > 0) {
-				_timer = setTimeout(() => {
+				_timer = setTimeout(async () => {
 					if (_permit && !_permit.isReleased) {
-						_permit.release();
+						isFailsafe = true;
+						await _permit.release();
+						isFailsafe = false;
 					}
 				}, Time);
 			}
@@ -56,11 +59,13 @@ module.exports = function (RED) {
 			_permit = Temp;
 			_fsTime = Time;
 			if (Time > 0) {
-				_timer = setTimeout(() => {
-					_permit.release();
+				_timer = setTimeout(async () => {
+					isFailsafe = true;
+					await _permit.release();
+					isFailsafe = false;
 				}, Time);
 			}
-			return;
+			return isFailsafe;
 		};
 
 		self.release = async function () {
