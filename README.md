@@ -19,7 +19,7 @@ Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **Semaphor
 
 If nothing has already taken the lock, the message will of course pass through, and subsequently start queuing other messages, where each one is allowed to pass on the signal or fail-safe trigger
 
-Messages are released with a peoprty of `sp_isFailsafe`, and this lets you know if the release was due to a fail-safe condition
+Messages are released with a property of `sp_isFailsafe`, and this lets you know if the release was due to a fail-safe condition
 
 
 ## Yeah but why?
