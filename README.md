@@ -1,7 +1,7 @@
 # node-red-semaphore-plus
 An advanced set of semaphore Nodes for Node RED, with a dynamic fail-safe
 
-### Uh... what is it
+## Uh... what is it
 
 This is a set of Nodes for Node RED, that allows messages to be queued, and signalled to pass, once a message has reached the end of the flow.
 But at the same time, allowing an optional fail-safe, that can be controlled dynamically.
@@ -20,12 +20,12 @@ Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **Semaphor
 If nothing has already taken the lock, the message will of course pass through, and subsequently start queing other messages, where each one is allowed to pass on the signal or fail-safe trigger 
 
 
-### Yeah but why?
+## Yeah but why?
 
 Working in an enterprise environment, where strict API access is enforced/monitored, I needed to come up with a way to control processing.
 Having tried other nodes to accomplish this, I was iether creating messy flows to try and emulate this approch, or using no longer maintained or buggy nodes.
 
-### License
+## License
 MIT License
 
 Copyright (c) 2023 Marcus Davies
