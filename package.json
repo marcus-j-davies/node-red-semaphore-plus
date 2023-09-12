@@ -1,0 +1,16 @@
+{
+  "name": "@space-engineering/semaphore-plus",
+  "version": "1.0.0",
+  "description": "A set semaphore nodes with dynamic failsafes",
+  "dependencies": {
+    "@shopify/semaphore": "3.0.2"
+  },
+  "node-red": {
+    "nodes": {
+      "semaphore-plus-take": "nodes/semaphore-plus-take.js",
+      "semaphore-plus-release": "nodes/semaphore-plus-release.js",
+      "semaphore-plus-fs-reset": "nodes/semaphore-plus-fs-reset.js",
+      "semaphore-plus-config": "nodes/semaphore-plus-config.js"
+    }
+  }
+}

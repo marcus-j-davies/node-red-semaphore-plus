@@ -1,0 +1,28 @@
+﻿<script type="text/javascript">
+  RED.nodes.registerType("semaphore-plus-config", {
+    category: "config",
+    defaults: {
+      name: { value: "Semaphore Plus Config" },
+    },
+    label: function () {
+      return this.name;
+    },
+  });
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/x-red" data-template-name="semaphore-plus-config">
+    
+    <div class="form-row">
+	      <label for="node-config-input-name" style="width:130px"><i class="fa fa-pencil"></i> Name</label>
+	      <input type="text" id="node-config-input-name" placeholder="Name" />
+	  </div>
+	 
+
+
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/markdown" data-help-name="semaphore-plus-config">
+<p>Semaphore Plus Config Node</p>
+</script>

@@ -1,0 +1,42 @@
+﻿<script type="text/javascript">
+  RED.nodes.registerType("semaphore-plus-take", {
+    category: "Space Engineering",
+    color: "rgb(46,145,205)",
+    defaults: {
+      name: { value: "Semaphore Take" },
+      timeout: { value: 0 },
+      config: { value: "", type: "semaphore-plus-config" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-stop",
+    label: function () {
+      return this.name;
+    },
+    paletteLabel: "Semaphore Take",
+  });
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/x-red" data-template-name="semaphore-plus-take">
+    
+    <div class="form-row">
+	      <label for="node-input-name" style="width:130px"><i class="fa fa-pencil"></i> Name</label>
+	      <input type="text" id="node-input-name" placeholder="Name" />
+	  </div>
+    <div class="form-row">
+      <label for="node-input-config" style="width:130px"><i class="fa fa-pencil"></i> Config</label>
+      <select id="node-input-config"></select>
+  </div>
+	  <div class="form-row">
+	    <label for="node-input-timeout" style="width:130px"><i class="fa fa-pencil"></i> FS Timeout</label>
+	    <input type="number" id="node-input-timeout" />
+	</div>
+
+
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/markdown" data-help-name="semaphore-plus-take">
+<p>Semaphore Take Node</p>
+</script>

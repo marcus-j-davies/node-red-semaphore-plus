@@ -1,0 +1,38 @@
+﻿<script type="text/javascript">
+  RED.nodes.registerType("semaphore-plus-release", {
+    category: "Space Engineering",
+    color: "rgb(46,145,205)",
+    defaults: {
+      name: { value: "Semaphore Release" },
+      config: { value: "", type: "semaphore-plus-config" },
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-play",
+    label: function () {
+      return this.name;
+    },
+    paletteLabel: "Semaphore Release",
+  });
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/x-red" data-template-name="semaphore-plus-release">
+    
+    <div class="form-row">
+	      <label for="node-input-name" style="width:130px"><i class="fa fa-pencil"></i> Name</label>
+	      <input type="text" id="node-input-name" placeholder="Name" />
+	  </div>
+    <div class="form-row">
+      <label for="node-input-config" style="width:130px"><i class="fa fa-pencil"></i> Config</label>
+      <select id="node-input-config"></select>
+  </div>
+	 
+
+
+</script>
+
+<!-- prettier-ignore -->
+<script type="text/markdown" data-help-name="semaphore-plus-release">
+<p>Semaphore Release Node</p>
+</script>
