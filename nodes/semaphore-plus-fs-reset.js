@@ -4,6 +4,8 @@ module.exports = function (RED) {
 		const self = this;
 		self._Controller = RED.nodes.getNode(config.config);
 
+		self.status({ fill: 'green', shape: 'dot', text: 'GQ : 0, LFS (ms) : 0' });
+
 		const Status = (GlobalQueueLength, FS) => {
 			self.status({
 				fill: GlobalQueueLength > 0 ? 'yellow' : 'green',

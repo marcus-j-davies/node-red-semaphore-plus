@@ -6,6 +6,12 @@ module.exports = function (RED) {
 
 		let _Queue = 0;
 
+		self.status({
+			fill: 'green',
+			shape: 'dot',
+			text: 'LQ : 0, GQ : 0, LFS (ms) : 0'
+		});
+
 		const Status = (GlobalQueueLength, FS) => {
 			self.status({
 				fill: _Queue > 0 ? 'yellow' : 'green',
