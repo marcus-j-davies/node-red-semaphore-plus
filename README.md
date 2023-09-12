@@ -1,5 +1,5 @@
 # node-red-semaphore-plus
-An advanced semaphore Node for Node RED, with a dynamic fail-safe
+An advanced set of semaphore Nodes for Node RED, with a dynamic fail-safe
 
 ### Uh... what is it
 
