@@ -1,5 +1,17 @@
   # node-red-semaphore-plus Change Log
 
+  - 2.0.0
+      
+   **Breaking Changes**
+  
+    - The follwoing properties have been renamed:
+      `sp_timeout` -> `smp_failsafeTimeout`  
+      `sp_isFailesafe` -> `smp_isFailesafe`
+
+   **Bug Fixes**
+  
+    - Initial node states were not correct
+
 - 1.1.0
       
    **New Features**

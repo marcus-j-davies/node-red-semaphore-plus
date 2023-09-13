@@ -11,13 +11,20 @@ module.exports = function (RED) {
 		let _callbacks = [];
 		let _fsTime = 0;
 		let _queue = 0;
-		let isFailsafe = false;
+		let _smp_isFailsafe = false;
 
 		function UpdateNodes() {
 			for (let i = 0; i < _callbacks.length; i++) {
 				_callbacks[i].cb(_queue, _fsTime > 0 ? _fsTime : 'Disabled');
 			}
 		}
+
+		self.getStatus = function () {
+			return {
+				time: _fsTime > 0 ? _fsTime : 'Disabled',
+				count: _queue
+			};
+		};
 
 		self.registerStatus = function (Details) {
 			_callbacks.push(Details);
@@ -36,9 +43,9 @@ module.exports = function (RED) {
 			if (Time > 0) {
 				_timer = setTimeout(async () => {
 					if (_permit && !_permit.isReleased) {
-						isFailsafe = true;
+						_smp_isFailsafe = true;
 						await _permit.release();
-						isFailsafe = false;
+						_smp_isFailsafe = false;
 					}
 				}, Time);
 			}
@@ -60,12 +67,12 @@ module.exports = function (RED) {
 			_fsTime = Time;
 			if (Time > 0) {
 				_timer = setTimeout(async () => {
-					isFailsafe = true;
+					_smp_isFailsafe = true;
 					await _permit.release();
-					isFailsafe = false;
+					_smp_isFailsafe = false;
 				}, Time);
 			}
-			return isFailsafe;
+			return _smp_isFailsafe;
 		};
 
 		self.release = async function () {
@@ -79,6 +86,11 @@ module.exports = function (RED) {
 			}
 			return;
 		};
+
+		self.on('close', (removed, done) => {
+			_callbacks = [];
+			done();
+		});
 	}
 
 	RED.nodes.registerType('semaphore-plus-config', Config);

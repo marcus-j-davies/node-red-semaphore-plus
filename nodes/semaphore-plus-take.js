@@ -9,7 +9,9 @@ module.exports = function (RED) {
 		self.status({
 			fill: 'green',
 			shape: 'dot',
-			text: 'LQ : 0, GQ : 0, LFS (ms) : 0'
+			text: `LQ : 0, GQ : ${self._Controller.getStatus().count}, LFS (ms) : ${
+				self._Controller.getStatus().time
+			}`
 		});
 
 		const Status = (GlobalQueueLength, FS) => {
@@ -29,11 +31,11 @@ module.exports = function (RED) {
 
 		self.on('input', (msg, send, done) => {
 			_Queue++;
-			const _Timeout = msg.sp_timeout || config.timeout;
-			self._Controller.take(parseInt(_Timeout)).then((isFailsafe) => {
+			const _Timeout = msg.smp_failsafeTimeout || config.timeout;
+			self._Controller.take(parseInt(_Timeout)).then((smp_isFailsafe) => {
 				_Queue--;
-				delete msg.sp_timeout;
-				msg.sp_isFailsafe = isFailsafe;
+				delete msg.smp_failsafeTimeout;
+				msg.smp_isFailsafe = smp_isFailsafe;
 				send(msg);
 				done();
 			});
