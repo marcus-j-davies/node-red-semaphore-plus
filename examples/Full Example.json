@@ -24,12 +24,17 @@
         "name": "Semaphore Take",
         "timeout": 0,
         "config": "403eb36e86403742",
-        "x": 350,
+        "avoidance": "never",
+        "threshold": "5",
+        "msgPart": "smp_avoidQueue",
+        "partType": "msg",
+        "x": 450,
         "y": 160,
         "wires": [
             [
                 "65c5995e73229d7d"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -73,7 +78,7 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
+        "x": 700,
         "y": 160,
         "wires": []
     },
@@ -122,7 +127,7 @@
         "z": "32b1a4a42d2c2508",
         "name": "Semaphore Release",
         "config": "403eb36e86403742",
-        "x": 360,
+        "x": 460,
         "y": 300,
         "wires": [
             []
@@ -155,12 +160,17 @@
         "name": "Semaphore Take",
         "timeout": "2000",
         "config": "403eb36e86403742",
-        "x": 350,
+        "avoidance": "never",
+        "threshold": "5",
+        "msgPart": "smp_avoidQueue",
+        "partType": "msg",
+        "x": 450,
         "y": 480,
         "wires": [
             [
                 "50a606cc80258e20"
-            ]
+            ],
+            []
         ]
     },
     {
@@ -204,8 +214,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 580,
-        "y": 480,
+        "x": 700,
+        "y": 460,
         "wires": []
     },
     {
@@ -264,7 +274,7 @@
         "name": "Semaphore FS Reset",
         "timeout": "1000",
         "config": "403eb36e86403742",
-        "x": 360,
+        "x": 460,
         "y": 660,
         "wires": [
             []
@@ -284,11 +294,135 @@
         "id": "87e1adda7b33c385",
         "type": "comment",
         "z": "32b1a4a42d2c2508",
-        "name": "Don't forget you can use msg.sp_timeout",
+        "name": "Don't forget you can use smp_failsafeTimeout",
         "info": "",
-        "x": 900,
+        "x": 1010,
         "y": 280,
         "wires": []
+    },
+    {
+        "id": "cef615500c3188af",
+        "type": "semaphore-plus-take",
+        "z": "32b1a4a42d2c2508",
+        "name": "Semaphore Take",
+        "timeout": 0,
+        "config": "403eb36e86403742",
+        "avoidance": "msg",
+        "threshold": 5,
+        "msgPart": "smp_avoidQueue",
+        "partType": "msg",
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "69d0feaecbfa47d8"
+            ],
+            [
+                "434e4ff3477c210e"
+            ]
+        ]
+    },
+    {
+        "id": "588d0298cfa77fab",
+        "type": "comment",
+        "z": "32b1a4a42d2c2508",
+        "name": "The 2nd output is for messages that is allowed to skip the queue",
+        "info": "",
+        "x": 310,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "13e610094db13469",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "smp_avoidQueue = true",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "smp_avoidQueue",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 840,
+        "wires": [
+            [
+                "cef615500c3188af"
+            ]
+        ]
+    },
+    {
+        "id": "69d0feaecbfa47d8",
+        "type": "debug",
+        "z": "32b1a4a42d2c2508",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "434e4ff3477c210e",
+        "type": "debug",
+        "z": "32b1a4a42d2c2508",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "88a8e693d5b3370f",
+        "type": "inject",
+        "z": "32b1a4a42d2c2508",
+        "name": "smp_avoidQueue = false",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "smp_avoidQueue",
+                "v": "false",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "cef615500c3188af"
+            ]
+        ]
     },
     {
         "id": "403eb36e86403742",
