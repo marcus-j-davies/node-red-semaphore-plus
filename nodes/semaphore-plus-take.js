@@ -30,15 +30,57 @@ module.exports = function (RED) {
 		});
 
 		self.on('input', (msg, send, done) => {
-			_Queue++;
-			const _Timeout = msg.smp_failsafeTimeout || config.timeout;
-			self._Controller.take(parseInt(_Timeout)).then((smp_isFailsafe) => {
-				_Queue--;
-				delete msg.smp_failsafeTimeout;
-				msg.smp_isFailsafe = smp_isFailsafe;
-				send(msg);
-				done();
-			});
+			const Queue = () => {
+				_Queue++;
+				const _Timeout = msg.smp_failsafeTimeout || config.timeout;
+				self._Controller.take(parseInt(_Timeout)).then((smp_isFailsafe) => {
+					_Queue--;
+					delete msg.smp_failsafeTimeout;
+					msg.smp_isFailsafe = smp_isFailsafe;
+					send([msg, undefined]);
+					done();
+				});
+			};
+
+			if (config.avoidance === 'never') {
+				Queue();
+			}
+
+			if (config.avoidance === 'msg') {
+				if (config.partType === 'msg') {
+					const Value = RED.util.evaluateNodeProperty(
+						config.msgPart,
+						config.partType,
+						self,
+						msg
+					);
+					if (Value === true) {
+						send([undefined, msg]);
+						done();
+					} else {
+						Queue();
+					}
+				} else {
+					const EXP = RED.util.prepareJSONataExpression(config.msgPart, self);
+					RED.util.evaluateJSONataExpression(EXP, msg, (Err, Res) => {
+						if (Res === true) {
+							send([undefined, msg]);
+							done();
+						} else {
+							Queue();
+						}
+					});
+				}
+			}
+
+			if (config.avoidance === 'threshold') {
+				if (self._Controller.getStatus().count >= config.threshold) {
+					send([undefined, msg]);
+					done();
+				} else {
+					Queue();
+				}
+			}
 		});
 	}
 	RED.nodes.registerType('semaphore-plus-take', Take);

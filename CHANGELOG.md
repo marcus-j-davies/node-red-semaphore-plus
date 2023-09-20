@@ -1,5 +1,13 @@
   # node-red-semaphore-plus Change Log
 
+  - 3.0.0
+      
+   **Breaking Changes**
+  
+    - The `Semaphore Take` node has been updated to now allow `JSONata` or `msg` evaulation,
+      that is then used to denote if the `msg` is allowed to avoid the Semaphore Queue
+
+
 - 2.0.0
       
    **Breaking Changes**
