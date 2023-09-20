@@ -1,6 +1,6 @@
-  # node-red-semaphore-plus Change Log
+# node-red-semaphore-plus Change Log
 
-  - 3.0.0
+- 3.0.0
       
    **Breaking Changes**
   
