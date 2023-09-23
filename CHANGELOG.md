@@ -1,5 +1,11 @@
 # node-red-semaphore-plus Change Log
 
+- 3.0.3
+      
+   **Changes**
+  
+    - Read Me edit
+    
 - 3.0.2
       
    **Changes**

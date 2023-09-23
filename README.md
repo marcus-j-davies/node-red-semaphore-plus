@@ -1,10 +1,14 @@
 # node-red-semaphore-plus
-An advanced set of semaphore Nodes for Node RED, with a dynamic fail-safe
+An advanced set of semaphore Nodes for Node RED, with a dynamic fail-safe.
 
 ## Uh... what is it
 
 This is a set of Nodes for Node RED, that allows messages to be queued, and signalled to pass, once a message has reached the end of the flow.
 But at the same time, allowing an optional fail-safe, that can be controlled dynamically.
+
+Furthermore, messages can be flagged to bypass the semaphore and 'sneak' past the messages waiting for the lock to be released.  
+This is achieved with either a single messge property, or a JSONata expression.
+ 
 
 | Node | What's it for? |
 |------|----------------|
