@@ -102,12 +102,12 @@ Sets the fail-safe time for the <code>msg</code> passing through
 Sets the optional Avoidance
  - Never
  - Per msg
- - GQ Threashold
+ - GQ Threshold
 
 <code>Evaluation</code> (Per msg)  
 The JSONata or msg path to determine if the <code>msg</code> should avoid the queue
 
-<code>Threshold</code> (GQ Threashold)  
+<code>Threshold</code> (GQ Threshold)  
 The queue count at which <code>msg</code>'s will begin to avoid the queue
 
 ## inputs  
@@ -115,6 +115,6 @@ The queue count at which <code>msg</code>'s will begin to avoid the queue
 if a <code>msg</code> has this property, it will be used in place of <code>Fail-safe (ms)</code>
 
 ## outputs  
-The orignal <code>msg</code> object,  
+The original <code>msg</code> object,  
 the output will also contain <code>smp_isFailsafe</code> denoting if this  <code>msg</code> was realsed due to a fail-safe condition
 </script>

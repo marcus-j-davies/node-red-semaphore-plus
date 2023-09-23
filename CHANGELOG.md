@@ -5,7 +5,8 @@
    **Changes**
   
     - Read Me edit
-    
+    - Docs typo
+
 - 3.0.2
       
    **Changes**
