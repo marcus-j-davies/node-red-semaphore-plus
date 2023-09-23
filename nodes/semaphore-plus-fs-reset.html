@@ -25,11 +25,11 @@
 	      <input type="text" id="node-input-name" placeholder="Name" />
 	  </div>
     <div class="form-row">
-      <label for="node-input-config" style="width:130px"><i class="fa fa-pencil"></i> Config</label>
+      <label for="node-input-config" style="width:130px"><i class="fa fa-cog"></i> Config</label>
       <select id="node-input-config"></select>
   </div>
   <div class="form-row">
-    <label for="node-input-timeout" style="width:130px"><i class="fa fa-pencil"></i> Fail-safe (ms)</label>
+    <label for="node-input-timeout" style="width:130px"><i class="fa fa-clock-o"></i> Fail-safe (ms)</label>
     <input type="number" id="node-input-timeout" />
 </div>
 	 
@@ -40,4 +40,16 @@
 <!-- prettier-ignore -->
 <script type="text/markdown" data-help-name="semaphore-plus-fs-reset">
 <p>Semaphore Failsafe Reset Node</p>
+
+## Properties  
+<code>Fail-safe (ms)</code>  
+Sets the new fail-safe time for a currently engaged lock
+
+## inputs  
+<code>smp_failsafeTimeout</code>  
+if a <code>msg</code> has this property, it will be used in place of <code>Fail-safe (ms)</code>
+
+## outputs  
+The orignal <code>msg</code> object
+   
 </script>

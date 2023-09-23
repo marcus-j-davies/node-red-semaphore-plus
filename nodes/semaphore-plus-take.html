@@ -28,7 +28,20 @@
 			default: 'msg',
 			typeField: '#node-input-partType'
 		});
+		$('#node-input-avoidance').on('change', handleAvoidanceChange);
+
+		$(
+			'#dialog-form > div.form-row.show-msg.smp-hide > div.red-ui-typedInput-container'
+		).css({ width: '320px' });
 	}
+
+	function handleAvoidanceChange() {
+		const Mode = $('#node-input-avoidance').val();
+		$('.smp-hide').hide();
+		$(`.show-${Mode}`).fadeIn('fast');
+	}
+
+	handleAvoidanceChange();
 </script>
 
 <!-- prettier-ignore -->
@@ -42,23 +55,23 @@
 	</div>
 
 	<div class="form-row">
-	     <label for="node-input-config" style="width:130px"><i class="fa fa-pencil"></i> Config</label>
+	     <label for="node-input-config" style="width:130px"><i class="fa fa-cog"></i> Config</label>
 	     <select id="node-input-config"></select>
 	</div>
 
 	<div class="form-row">
-	    <label for="node-input-timeout" style="width:130px"><i class="fa fa-pencil"></i> Fail-safe (ms)</label>
+	    <label for="node-input-timeout" style="width:130px"><i class="fa fa-clock-o"></i> Fail-safe (ms)</label>
 	    <input type="number" id="node-input-timeout" />
 	</div>
 
 	<div class="form-tips">
-		Queue Avoidance settings only applies when the lock is in use. Messages avoiding the queue, will be output to Pin 2.
+		Messages avoiding the queue, will be output to Pin 2.
 	</div>
 
 	<br />
 
 	<div class="form-row">
-		<label for="node-input-avoidance" style="width:130px"><i class="fa fa-pencil"></i> Avoidance Mode</label>
+		<label for="node-input-avoidance" style="width:130px"><i class="fa fa-forward"></i> Avoidance Mode</label>
 		<select id="node-input-avoidance" style="width:70%">
 			<option value="never">Never</option>
 			<option value="msg">Per msg (must evaluate to true:false)</option>
@@ -66,13 +79,13 @@
 		</select>
 	</div>
 
-	<div class="form-row">
-		<label for="node-input-msgPart" style="width:130px"><i class="fa fa-pencil"></i> MSG Part</label>
+	<div class="form-row show-msg smp-hide">
+		<label for="node-input-msgPart" style="width:130px"><i class="fa fa-code"></i> Evaluation</label>
 		<input type="text" id="node-input-msgPart" placeholder="Name" />
 	</div>
 
-	<div class="form-row">
-		<label for="node-input-threshold" style="width:130px"><i class="fa fa-pencil"></i> Threshold</label>
+	<div class="form-row show-threshold smp-hide">
+		<label for="node-input-threshold" style="width:130px"><i class="fa fa-exclamation"></i> Threshold</label>
 		<input type="number" id="node-input-threshold" />
 	</div>
 </script>
@@ -80,4 +93,28 @@
 <!-- prettier-ignore -->
 <script type="text/markdown" data-help-name="semaphore-plus-take">
 <p>Semaphore Take Node</p>
+
+## Properties  
+<code>Fail-safe (ms)</code>  
+Sets the fail-safe time for the <code>msg</code> passing through
+
+<code>Avoidance Mode</code>  
+Sets the optional Avoidance
+ - Never
+ - Per msg
+ - GQ Threashold
+
+<code>Evaluation</code> (Per msg)  
+The JSONata or msg path to determine if the <code>msg</code> should avoid the queue
+
+<code>Threshold</code> (GQ Threashold)  
+The queue count at which <code>msg</code>'s will begin to avoid the queue
+
+## inputs  
+<code>smp_failsafeTimeout</code>  
+if a <code>msg</code> has this property, it will be used in place of <code>Fail-safe (ms)</code>
+
+## outputs  
+The orignal <code>msg</code> object,  
+the output will also contain <code>smp_isFailsafe</code> denoting if this  <code>msg</code> was realsed due to a fail-safe condition
 </script>

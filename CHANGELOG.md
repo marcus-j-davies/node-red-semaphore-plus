@@ -1,5 +1,18 @@
 # node-red-semaphore-plus Change Log
 
+- 3.0.2
+      
+   **Changes**
+  
+    - Improve Layout/input icons
+    - Add Node documentation 
+
+- 3.0.1
+      
+   **Bug Fixes**
+  
+    - Add `license`
+
 - 3.0.0
       
    **Breaking Changes**
