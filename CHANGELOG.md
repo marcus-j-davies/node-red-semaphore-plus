@@ -1,5 +1,15 @@
 # node-red-semaphore-plus Change Log
 
+- 3.2.0
+      
+   **New Features**
+  
+    - Add support for `msg.reset` to stop message propergation on the `Release` node
+
+  **Fixes**
+  
+    - Check if a permit is undefined before executing an atomic Release
+
 - 3.1.0
       
    **New Features**

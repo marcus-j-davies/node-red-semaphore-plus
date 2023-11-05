@@ -29,9 +29,14 @@ module.exports = function (RED) {
 
 		self.on('input', (msg, send, done) => {
 			const shouldReset = msg.smp_reset === true;
+			const shouldResetAndStop = msg.reset === true;
 
-			if (shouldReset) {
-				self._Controller.atomicReset().then(() => {
+			if (shouldResetAndStop) {
+				self._Controller.atomicRelease().then(() => {
+					done();
+				});
+			} else if (shouldReset) {
+				self._Controller.atomicRelease().then(() => {
 					delete msg.smp_reset;
 					send(msg);
 					done();

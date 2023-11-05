@@ -21,21 +21,28 @@ module.exports = function (RED) {
 		}
 
 		self.getLockStatus = function () {
-			return _permit?.isReleased;
+			if (_permit !== undefined) {
+				return _permit.isReleased;
+			}
+
+			return true;
 		};
 
 		self.isInReset = function () {
 			return _isInReset;
 		};
 
-		self.atomicReset = async function () {
+		self.atomicRelease = async function () {
 			_isInReset = true;
-			while (!_permit.isReleased) {
-				await _permit.release();
-				_smp_isFailsafe = false;
-				if (_timer) {
-					clearTimeout(_timer);
-					_timer = undefined;
+
+			if (_permit !== undefined) {
+				while (!_permit.isReleased) {
+					await _permit.release();
+					_smp_isFailsafe = false;
+					if (_timer) {
+						clearTimeout(_timer);
+						_timer = undefined;
+					}
 				}
 			}
 			_isInReset = false;
