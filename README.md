@@ -25,6 +25,9 @@ If nothing has already taken the lock, the message will of course pass through, 
 
 Messages are released with a property of `smp_isFailsafe`, and this lets you know if the release was due to a fail-safe condition
 
+The **Semaphore Release** Node can also be used to reset the entire queue state, this will result in all queued message being dropped.  
+Setting a message property `smp_reset = true` will achieve this
+
 
 
 ## Yeah but why?

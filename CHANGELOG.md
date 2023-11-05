@@ -1,5 +1,18 @@
 # node-red-semaphore-plus Change Log
 
+- 3.1.0
+      
+   **New Features**
+  
+    - You can now reset the lock (which will dipose of all messages)
+      To do this, send a property of `msg.smp_reset = true` to the `Release` Node
+
+   **Changes**
+
+    - The color of the status in the `Take` Node , now denotes wheather or not a message will be queued 
+      Where a dot denotes if this `Take` has queued messages, and a ring denoets that it does not. 
+
+
 - 3.0.3
       
    **Changes**

@@ -12,12 +12,35 @@ module.exports = function (RED) {
 		let _fsTime = 0;
 		let _queue = 0;
 		let _smp_isFailsafe = false;
+		let _isInReset = false;
 
 		function UpdateNodes() {
 			for (let i = 0; i < _callbacks.length; i++) {
 				_callbacks[i].cb(_queue, _fsTime > 0 ? _fsTime : 'Disabled');
 			}
 		}
+
+		self.getLockStatus = function () {
+			return _permit?.isReleased;
+		};
+
+		self.isInReset = function () {
+			return _isInReset;
+		};
+
+		self.atomicReset = async function () {
+			_isInReset = true;
+			while (!_permit.isReleased) {
+				await _permit.release();
+				_smp_isFailsafe = false;
+				if (_timer) {
+					clearTimeout(_timer);
+					_timer = undefined;
+				}
+			}
+			_isInReset = false;
+			UpdateNodes();
+		};
 
 		self.getStatus = function () {
 			return {
@@ -45,6 +68,7 @@ module.exports = function (RED) {
 					if (_permit && !_permit.isReleased) {
 						_smp_isFailsafe = true;
 						await _permit.release();
+						UpdateNodes();
 						_smp_isFailsafe = false;
 					}
 				}, Time);
@@ -69,6 +93,7 @@ module.exports = function (RED) {
 				_timer = setTimeout(async () => {
 					_smp_isFailsafe = true;
 					await _permit.release();
+					UpdateNodes();
 					_smp_isFailsafe = false;
 				}, Time);
 			}
@@ -82,6 +107,7 @@ module.exports = function (RED) {
 			}
 			if (_permit && !_permit.isReleased) {
 				await _permit.release();
+				UpdateNodes();
 				return;
 			}
 			return;

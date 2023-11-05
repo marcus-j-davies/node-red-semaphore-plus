@@ -28,10 +28,21 @@ module.exports = function (RED) {
 		});
 
 		self.on('input', (msg, send, done) => {
-			self._Controller.release().then(() => {
-				send(msg);
-				done();
-			});
+			const shouldReset = msg.smp_reset === true;
+
+			if (shouldReset) {
+				self._Controller.atomicReset().then(() => {
+					delete msg.smp_reset;
+					send(msg);
+					done();
+				});
+			} else {
+				self._Controller.release().then(() => {
+					delete msg.smp_reset;
+					send(msg);
+					done();
+				});
+			}
 		});
 	}
 	RED.nodes.registerType('semaphore-plus-release', Release);

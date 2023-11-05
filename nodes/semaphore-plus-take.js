@@ -8,7 +8,7 @@ module.exports = function (RED) {
 
 		self.status({
 			fill: 'green',
-			shape: 'dot',
+			shape: 'ring',
 			text: `LQ : 0, GQ : ${self._Controller.getStatus().count}, LFS (ms) : ${
 				self._Controller.getStatus().time
 			}`
@@ -16,8 +16,8 @@ module.exports = function (RED) {
 
 		const Status = (GlobalQueueLength, FS) => {
 			self.status({
-				fill: _Queue > 0 ? 'yellow' : 'green',
-				shape: 'dot',
+				fill: self._Controller.getLockStatus() ? 'green' : 'yellow',
+				shape: _Queue > 0 ? 'dot' : 'ring',
 				text: `LQ : ${_Queue}, GQ : ${GlobalQueueLength}, LFS (ms) : ${FS}`
 			});
 		};
@@ -36,9 +36,11 @@ module.exports = function (RED) {
 				self._Controller.take(parseInt(_Timeout)).then((smp_isFailsafe) => {
 					_Queue--;
 					delete msg.smp_failsafeTimeout;
-					msg.smp_isFailsafe = smp_isFailsafe;
-					send([msg, undefined]);
-					done();
+					if (!self._Controller.isInReset()) {
+						msg.smp_isFailsafe = smp_isFailsafe;
+						send([msg, undefined]);
+						done();
+					}
 				});
 			};
 
