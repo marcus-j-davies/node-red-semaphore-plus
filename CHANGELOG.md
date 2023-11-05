@@ -14,7 +14,7 @@
       
    **New Features**
   
-    - You can now reset the lock (which will dipose of all messages)
+    - You can now reset the lock (which will dispose of all messages)
       To do this, send a property of `msg.smp_reset = true` to the `Release` Node
 
    **Changes**
