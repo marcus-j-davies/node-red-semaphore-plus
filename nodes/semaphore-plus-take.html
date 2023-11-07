@@ -95,8 +95,8 @@
 <p>Semaphore Take Node</p>
 
 ## Properties  
-<code>Fail-safe (ms)</code>  
-Sets the fail-safe time for the <code>msg</code> passing through
+<code>Default FS (ms)</code>  
+Sets the default fail-safe time for the <code>msg</code> passing through this take Node
 
 <code>Avoidance Mode</code>  
 Sets the optional Avoidance
@@ -105,16 +105,29 @@ Sets the optional Avoidance
  - GQ Threshold
 
 <code>Evaluation</code> (Per msg)  
-The JSONata or msg path to determine if the <code>msg</code> should avoid the queue
+The JSONata expression or msg path to determine if the <code>msg</code> should avoid the queue
 
 <code>Threshold</code> (GQ Threshold)  
 The queue count at which <code>msg</code>'s will begin to avoid the queue
 
-## inputs  
+## Inputs  
 <code>smp_failsafeTimeout</code>  
-if a <code>msg</code> has this property, it will be used in place of <code>Fail-safe (ms)</code>
+if a <code>msg</code> has this property, it will be used in place of <code>Default FS (ms)</code>
 
-## outputs  
+## Outputs  
 The original <code>msg</code> object,  
-the output will also contain <code>smp_isFailsafe</code> denoting if this  <code>msg</code> was realsed due to a fail-safe condition
+the output will also contain the following:
+ - <code>smp_isFailsafe</code> - denoting if this  <code>msg</code> was released due to a fail-safe condition
+ - <code>smp_appliedFailsafe</code> - states the fail-safe time that was applied.
+
+## Status
+- Shape
+  - Green Ring - No messages queued here, next message will pass through 
+  - Yellow Ring - No messages queued here, next message will be
+  - Yellow Filled - Messages queued here, and further messages will be also
+- Text
+  - LQ - Local queue size
+  - GQ - Global queue size
+  - DFS - Default fail-safe time for this take node
+  - LAFS - The last fail-safe time that was applied (global)
 </script>

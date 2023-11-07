@@ -32,6 +32,7 @@ module.exports = function (RED) {
 		self.on('input', (msg, send, done) => {
 			const _Timeout = msg.smp_failsafeTimeout || config.timeout;
 			self._Controller.reset(parseInt(_Timeout));
+			msg.smp_appliedFailsafe = parseInt(_Timeout);
 			delete msg.smp_failsafeTimeout;
 			send(msg);
 			done();

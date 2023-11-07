@@ -42,14 +42,16 @@
 <p>Semaphore Failsafe Reset Node</p>
 
 ## Properties  
-<code>Fail-safe (ms)</code>  
+<code>Default FS (ms</code>  
 Sets the new fail-safe time for a currently engaged lock
 
-## inputs  
+## Inputs  
 <code>smp_failsafeTimeout</code>  
-if a <code>msg</code> has this property, it will be used in place of <code>Fail-safe (ms)</code>
+if a <code>msg</code> has this property, it will be used in place of <code>Default FS (ms)</code>
 
-## outputs  
+## Outputs  
 The original <code>msg</code> object
+the output will also contain the following:
+ - <code>smp_appliedFailsafe</code> - states the fail-safe time that was applied.
    
 </script>

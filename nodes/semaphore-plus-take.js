@@ -40,6 +40,7 @@ module.exports = function (RED) {
 					delete msg.smp_failsafeTimeout;
 					if (!self._Controller.isInReset()) {
 						msg.smp_isFailsafe = smp_isFailsafe;
+						msg.smp_appliedFailsafe = parseInt(_Timeout);
 						send([msg, undefined]);
 						done();
 					}

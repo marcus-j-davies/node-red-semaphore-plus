@@ -36,7 +36,14 @@
 <script type="text/markdown" data-help-name="semaphore-plus-release">
 <p>Semaphore Release Node</p>
 
-## outputs  
+## Inputs  
+<code>reset</code>  
+if a <code>msg</code> has this property set to <code>true</code>, it will reset the internal queue state, and drop all queued message
+
+<code>smp_reset</code>  
+like **reset**, but will continue to pass on the <code>msg</code> after.
+
+## Outputs  
 The original <code>msg</code> object
 
 </script>

@@ -1,5 +1,19 @@
 # node-red-semaphore-plus Change Log
 
+- 3.3.0
+      
+   **New Features**
+  
+    - Both the `Take` and `FS Reset` Nodes, now includes a new output property.
+      `smp_appliedFailsafe` This denotes what fail-safe was applied for this `msg` allowing reference to the current fail-safe time.
+      You can, for example, use its value to decide on an updated fail-safe time.
+
+
+   **Changes**
+
+    - Improvements to both the node Status and in-line Node help.
+
+
 - 3.2.0
       
    **New Features**
