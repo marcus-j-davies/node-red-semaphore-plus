@@ -1,5 +1,11 @@
 # node-red-semaphore-plus Change Log
 
+- 3.3.1
+
+  **Fixes**
+  
+    - MIssed out some info on README
+
 - 3.3.0
       
    **New Features**
