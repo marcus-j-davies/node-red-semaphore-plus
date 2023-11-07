@@ -23,6 +23,7 @@ This is achieved with either a single messge property, or a JSONata expression.
 |----------|----------------|
 |smp_failsafeTimeout (number) (IN) | Overrides the default fail-safe time |
 |smp_appliedFailsafe (number) (OUT) | The  fail-safe time that was applied |
+|smp_isFailsafe (boolean) (**Semaphore Take** only) (OUT) | If the release was due to a fail-safe condition |
 
 **Semaphore Release** Optional Properties
 | Property | What's it for? |
