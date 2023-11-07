@@ -11,7 +11,8 @@
 
    **Changes**
 
-    - Improvements to both the node Status and in-line Node help.
+    - Improvements to the node Status.
+    - Improvements to node help, and **README**
 
 
 - 3.2.0
