@@ -18,13 +18,13 @@ This is achieved with either a single messge property, or a JSONata expression.
 
 ## Message Properties
 
-**Semaphore Take** and **Semaphore FS Reset** Properties
+**Semaphore Take** and **Semaphore FS Reset** Optional Properties
 | Property | What's it for? |
 |----------|----------------|
 |smp_failsafeTimeout (number) (IN) | Overrides the default fail-safe time |
 |smp_appliedFailsafe (number) (OUT) | The  fail-safe time that was applied |
 
-**Semaphore Release** Properties
+**Semaphore Release** Optional Properties
 | Property | What's it for? |
 |----------|----------------|
 |reset (boolean) (IN)     | Resets the queue state, and does not pass on the incoming `msg` |
