@@ -16,19 +16,19 @@ This is achieved with either a single messge property, or a JSONata expression.
 |Semaphore Release | Raises the signal to allow a message to pass   |
 |Semaphore FS Reset | Alters the current fail-safe time |
 
-The fail-safe time is set at Node level (**Semaphore Take**, **Semaphore FS Reset**),  
-But! You can also pass in a msg property of `smp_failsafeTimeout` and the nodes will ignore what is set at Node level, and use this value instead
+## Message Properties
 
-Setting the fail-safe to 0 (zero) will disable the fail-safe, meaning **Semaphore Release** will be the only node that can release the lock
+**Semaphore Take** and **Semaphore FS Reset** Properties
+| Property | What's it for? |
+|----------|----------------|
+|smp_failsafeTimeout (number) (IN) | Overrides the default fail-safe time |
+|smp_appliedFailsafe (number) (OUT) | The  fail-safe time that was applied |
 
-If nothing has already taken the lock, the message will of course pass through, and subsequently start queuing other messages, where each one is allowed to pass on the signal or fail-safe trigger
-
-Messages are released with a property of `smp_isFailsafe`, and this lets you know if the release was due to a fail-safe condition
-
-The **Semaphore Release** Node can also be used to reset the entire queue state, this will result in all queued message being dropped.  
-Setting a message property `smp_reset = true` will achieve this.  
-If you wanted to stop the message containing this command from propagating, use `reset` instead of `smp_reset`
-
+**Semaphore Release** Properties
+| Property | What's it for? |
+|----------|----------------|
+|reset (boolean) (IN)     | Resets the queue stats, and does not pass on the incoming `msg` |
+|smp_reset (boolean) (IN) | Resets the queue stats, and passes on the incoming `msg` |
 
 
 ## Yeah but why?
