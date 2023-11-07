@@ -7,7 +7,7 @@ module.exports = function (RED) {
 		self.status({
 			fill: self._Controller.getStatus().count > 0 ? 'yellow' : 'green',
 			shape: 'dot',
-			text: `GQ : ${self._Controller.getStatus().count}, LFS (ms) : ${
+			text: `GQ ${self._Controller.getStatus().count} | LAFS ${
 				self._Controller.getStatus().time
 			}`
 		});
@@ -16,7 +16,7 @@ module.exports = function (RED) {
 			self.status({
 				fill: GlobalQueueLength > 0 ? 'yellow' : 'green',
 				shape: 'dot',
-				text: `GQ : ${GlobalQueueLength}, LFS (ms) : ${FS}`
+				text: `GQ ${GlobalQueueLength} | LAFS ${FS}`
 			});
 		};
 

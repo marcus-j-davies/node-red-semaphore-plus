@@ -16,7 +16,7 @@ module.exports = function (RED) {
 
 		function UpdateNodes() {
 			for (let i = 0; i < _callbacks.length; i++) {
-				_callbacks[i].cb(_queue, _fsTime > 0 ? _fsTime : 'Disabled');
+				_callbacks[i].cb(_queue, _fsTime > 0 ? _fsTime : 'None');
 			}
 		}
 
@@ -51,7 +51,7 @@ module.exports = function (RED) {
 
 		self.getStatus = function () {
 			return {
-				time: _fsTime > 0 ? _fsTime : 'Disabled',
+				time: _fsTime > 0 ? _fsTime : 'None',
 				count: _queue
 			};
 		};

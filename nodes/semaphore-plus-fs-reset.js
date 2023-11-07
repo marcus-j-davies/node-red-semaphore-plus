@@ -7,16 +7,18 @@ module.exports = function (RED) {
 		self.status({
 			fill: self._Controller.getStatus().count > 0 ? 'yellow' : 'green',
 			shape: 'dot',
-			text: `GQ : ${self._Controller.getStatus().count}, LFS (ms) : ${
-				self._Controller.getStatus().time
-			}`
+			text: `GQ ${self._Controller.getStatus().count} | DFS ${
+				config.timeout < 1 ? 'None' : config.timeout
+			} | LAFS ${self._Controller.getStatus().time}`
 		});
 
 		const Status = (GlobalQueueLength, FS) => {
 			self.status({
 				fill: GlobalQueueLength > 0 ? 'yellow' : 'green',
 				shape: 'dot',
-				text: `GQ : ${GlobalQueueLength}, LFS (ms) : ${FS}`
+				text: `GQ ${GlobalQueueLength} | DFS ${
+					config.timeout < 1 ? 'None' : config.timeout
+				} | LAFS ${FS}`
 			});
 		};
 
