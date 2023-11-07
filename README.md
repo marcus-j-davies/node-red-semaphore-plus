@@ -27,8 +27,8 @@ This is achieved with either a single messge property, or a JSONata expression.
 **Semaphore Release** Properties
 | Property | What's it for? |
 |----------|----------------|
-|reset (boolean) (IN)     | Resets the queue stats, and does not pass on the incoming `msg` |
-|smp_reset (boolean) (IN) | Resets the queue stats, and passes on the incoming `msg` |
+|reset (boolean) (IN)     | Resets the queue state, and does not pass on the incoming `msg` |
+|smp_reset (boolean) (IN) | Resets the queue state, and passes on the incoming `msg` |
 
 
 ## Yeah but why?
