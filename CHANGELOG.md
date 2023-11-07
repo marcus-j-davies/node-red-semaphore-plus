@@ -4,7 +4,7 @@
 
   **Fixes**
   
-    - MIssed out some info on README
+    - Missed out some info on README
 
 - 3.3.0
       
