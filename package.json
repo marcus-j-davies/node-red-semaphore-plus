@@ -1,6 +1,6 @@
 {
 	"name": "@marcus-j-davies/node-red-semaphore-plus",
-	"version": "3.3.1",
+	"version": "3.4.0",
 	"license": "MIT",
 	"description": "An advanced set of semaphore Nodes for Node RED, with a dynamic fail-safe",
 	"keywords": [

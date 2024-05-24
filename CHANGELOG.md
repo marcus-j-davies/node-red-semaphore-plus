@@ -1,5 +1,12 @@
 # node-red-semaphore-plus Change Log
 
+- 3.4.0
+
+   **New Features**
+
+    - Add a new Avoidance Mode : `When Locked`
+      This alllows to reject messages if the semaphore is currently in use.
+
 - 3.3.1
 
   **Fixes**

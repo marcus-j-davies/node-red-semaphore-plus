@@ -78,6 +78,15 @@ module.exports = function (RED) {
 				}
 			}
 
+			if (config.avoidance === 'locked') {
+				if (!self._Controller.getLockStatus()) {
+					send([undefined, msg]);
+					done();
+				} else {
+					Queue();
+				}
+			}
+
 			if (config.avoidance === 'threshold') {
 				if (self._Controller.getStatus().count >= config.threshold) {
 					send([undefined, msg]);
