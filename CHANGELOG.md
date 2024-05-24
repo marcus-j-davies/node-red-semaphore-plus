@@ -4,7 +4,7 @@
 
    **New Features**
 
-    - Add a new Avoidance Mode : `When Locked`
+    - Add a new Avoidance Mode : `When Locked`  
       This alllows to reject messages if the semaphore is currently in use.
 
 - 3.3.1
